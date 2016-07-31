@@ -33,9 +33,11 @@ public class LevelView extends Button {
             public void onClick(View v) {
                 count = (step+count)%maxCount+startCount;
                 getBackground().setLevel(count);
-                Toast.makeText(v.getContext(),String.valueOf(count),Toast.LENGTH_SHORT).show();
+                setText(String.valueOf(count));
+                setTextSize(50);
             }
         });
         setBackgroundResource(background);
+        setText(String.valueOf(startCount));
     }
 }
