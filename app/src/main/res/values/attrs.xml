@@ -4,5 +4,6 @@
         <attr name="maxCount" format="integer"/>
         <attr name="step" format="integer"/>
         <attr name="startCount" format="integer"/>
+        <attr name="backgroung" format="reference"/>
     </declare-styleable>
 </resources>

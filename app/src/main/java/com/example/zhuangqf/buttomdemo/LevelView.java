@@ -1,10 +1,10 @@
 package com.example.zhuangqf.buttomdemo;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 /**
  * Created by zhuangqf on 7/30/16.
@@ -23,15 +23,18 @@ public class LevelView extends Button {
 
     public LevelView(final Context context, AttributeSet attributes) {
         super(context, attributes);
-        maxCount = attributes.getAttributeIntValue("LevelView", "maxCount", 100);
-        startCount = attributes.getAttributeIntValue("LevelView", "startCount", 0);
-        step = attributes.getAttributeIntValue("LevelView", "step", 1);
-        background = attributes.getAttributeResourceValue("Level", "background", R.drawable.level_button);
+
+        final TypedArray a = getContext().obtainStyledAttributes(attributes, R.styleable.LevelView, 0, 0);
+
+        maxCount = a.getInt(R.styleable.LevelView_maxCount,100);
+        startCount = a.getInt(R.styleable.LevelView_startCount,0);
+        step = a.getInt(R.styleable.LevelView_step,1);
+        background = a.getResourceId(R.styleable.LevelView_backgroung,R.drawable.level_button);
         count = startCount;
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                count = (step+count)%maxCount+startCount;
+                if(count<maxCount) count++;
                 getBackground().setLevel(count);
                 setText(String.valueOf(count));
                 setTextSize(50);
